@@ -1,10 +1,14 @@
 package web.service;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
 import web.model.Car;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+@Service
 public class CarServiceImpl implements CarService {
 
 
@@ -17,15 +21,9 @@ public class CarServiceImpl implements CarService {
         cars.add(new Car("Silver", 2014, "Porsche"));
         cars.add(new Car("White", 2020, "BMW"));
 
-        if (count == 0 || count > cars.size()) {
-
-            count = cars.size();
-
-        }
-
-        cars = cars.subList(0, count);
-
-        return cars;
+        return cars.stream()
+                .limit(count)
+                .collect(Collectors.toList());
     }
 
 }
