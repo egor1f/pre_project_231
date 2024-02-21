@@ -5,7 +5,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import web.model.Car;
 import web.service.*;
-
 import java.util.List;
 
 @Controller
