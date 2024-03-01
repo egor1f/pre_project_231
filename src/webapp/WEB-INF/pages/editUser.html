@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EDIT USER BY ID</title>
+</head>
+<body>
+<h2>Edit User </h2>
+<form action="/edit_user" method="POST" th:object="${user}">
+    <!-- Скрытое поле для передачи идентификатора пользователя -->
+    <input type="hidden" th:field="*{id}">
+    <label for="name">Name:</label>
+    <br>
+    <input th:field="*{name}" type="text" id="name">
+    <br><br>
+    <label for="age">Age:</label>
+    <br>
+    <input th:field="*{age}" type="number" id="age" >
+    <br><br>
+    <label for="number">Phone:</label>
+    <br>
+    <input th:field="*{number}" type="text" id="number" >
+    <br>
+    <br>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
