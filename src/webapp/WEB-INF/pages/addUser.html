@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>ADD USER IN DB</title>
@@ -37,14 +36,17 @@
     <label for="name">Name:</label>
     <br>
     <input th:field="*{name}" type="text" id="name">
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
     <br><br>
     <label for="age">Age:</label>
     <br>
     <input th:field="*{age}" type="number" id="age" >
+    <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></span>
     <br><br>
     <label for="number">Phone:</label>
     <br>
     <input th:field="*{number}" type="text" id="number" >
+    <span th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></span>
     <br>
     <br>
     <button type="submit">Submit</button>

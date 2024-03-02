@@ -3,12 +3,15 @@ package web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import web.entity.User;
 import web.service.UserService;
+
+import javax.validation.Valid;
 
 @Controller
 public class UserController {
@@ -35,9 +38,13 @@ public class UserController {
     }
 
     @PostMapping("/add_user")
-    public String addUser(@ModelAttribute("user") User user) {
-        userService.addUser(user);
-        return "redirect:/";
+    public String addUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "addUser";
+        } else {
+            userService.addUser(user);
+            return "redirect:/";
+        }
     }
 
     @GetMapping("/edit_user")
@@ -47,9 +54,14 @@ public class UserController {
     }
 
     @PostMapping("/edit_user")
-    public String submitEdit(@ModelAttribute("user") User user) {
-        userService.updateUser(user);
-        return "redirect:/";
+    public String submitEdit(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return "editUser";
+        } else {
+            userService.updateUser(user);
+            return "redirect:/";
+        }
     }
 
     @GetMapping("/delete_user")
